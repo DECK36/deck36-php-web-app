@@ -368,4 +368,11 @@
         <echo message="Installing the assets from the bundles in web with symlinks. (Better for development)" />
         <exec command="app/console assets:install" />
     </target>
+
+    <target name="clear-permissions">
+        <echo message="Clearing permissions for cache dir" />
+        <exec command="sudo chmod -R 0777 /tmp/cache" />
+        <echo message="Clearing permissions for logs dir" />
+        <exec command="sudo chmod -R 0777 /tmp/logs" />
+    </target>
 </project>

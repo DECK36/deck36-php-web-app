@@ -5955,21 +5955,78 @@ td.visible-print {
   }
 }
 /* If you have other .less files, import them here */
-#playground-grid {
-  height: 40em;
+#playground-grid > tbody > tr > td {
+  height: 120px;
+  width: 120px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-image: url('../../images/logo.png');
+  background-color: #022330;
+  background-position-y: center;
+}
+#cat_image_viewport {
+  background-repeat: no-repeat;
+  background-image: url('../../images/logo.png');
+  background-color: #022330;
+  background-position: center;
 }
 #cat_image {
-  background-image: url('../../Resources/public/images/css/kittenboost.jpg');
+  background-image: url('../../bundles/deck36plan9/images/css/kittenboost.jpg');
+  background-repeat: no-repeat;
+  width: 500px;
+  height: 375px;
+  position: center;
+}
+#playground-grid {
+  background-image: url('../../bundles/deck36plan9/images/css/kittenboost.jpg');
+  background-repeat: no-repeat;
+  background-size: 15000px 22500px;
+  width: 100%;
+}
+#archivements {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  width: 25em;
+  z-index: 10;
+  padding: 0.5em;
+  margin: 20px;
+}
+#archivements * {
+  margin: 0;
+  padding: 0;
+}
+#archivements ul {
+  list-style-type: none;
+  width: 100%;
+  display: none;
+  background-color: #022330;
+  color: #ffffff;
+}
+#archivements li {
+  padding: 8px;
+  overflow: auto;
+}
+#badges {
+  list-style-type: none;
+  width: 100%;
 }
 #overview-grid {
   border-collapse: collapse;
-  max-width: 100%;
+  width: 100%;
   background-size: 100%;
   min-width: 50%;
+  background-repeat: no-repeat;
 }
 #overview-grid > tbody > tr > td {
+  border: none;
   height: 3px;
   width: 3px;
-  border: none;
+}
+.overview-grid-col-closed {
+  background-color: #022330;
+}
+.overview-grid-col-open {
+  background-color: transparent;
 }
 /* custom settings that deviate from Bootstrap's default values */
