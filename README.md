@@ -44,14 +44,14 @@ To start development on the project, just build the environment with the default
 
 ## build
 ```
- phing.phar build
+ ./phing.phar build
 ```
 ## test
 None.
 
 ## reset the game
 ```
- phing.phar initializeGame
+ ./phing.phar initializeGame
 ```
 
 # create users to start
