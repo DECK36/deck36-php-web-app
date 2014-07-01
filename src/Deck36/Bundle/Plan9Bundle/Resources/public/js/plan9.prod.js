@@ -15155,15 +15155,28 @@ function Plan9DataSender()
         logger.debug('init - collectData called!');
         var that = this;
 
-        $('.playground-square').bind('click', function() {
-            logger.debug('init - playground-square - clicked - collectingData');
-            // send data only in case of an "open" square.
-            that._sendSolvedCbt(this, false);
+        $(document).bind("contextmenu", function(e) {
+            return false;
         });
 
-        $('.playground-square').bind('contextmenu', function() {
-            logger.debug('init - playground-square - clicked - collectingData');
-            that._sendSolvedCbt(this, true);
+        $('.playground-square').mousedown(function(event) {
+            switch (event.which) {
+                case 1:
+                    logger.debug('init - playground-square - clicked - collectingData');
+                    // send data only in case of an "open" square.
+                    that._sendSolvedCbt(this, false);
+                    break;
+                case 2:
+                    alert('DOOOOOGGGSSS!!!');
+                    break;
+                case 3:
+                    logger.debug('init - playground-square - clicked - collectingData');
+                    event.preventDefault();
+                    that._sendSolvedCbt(this, true);
+                    break;
+                default:
+                    alert('ELEPHANTS!!!');
+            }
         });
 
         callback(null);
