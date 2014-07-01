@@ -1,6 +1,10 @@
 Plan9 from outer kitten
 ==========================
 [1]: https://github.com/FriendsOfSymfony/FOSUserBundle/blob/master/Resources/doc/command_line_tools.md "fos-user-commandline-tools"
+[logo]: ./deck36.png "Deck36 Logo"
+
+![Deck36 Logo][logo]
+
 
 The amazingly most insane MMORPG ever built.
 
