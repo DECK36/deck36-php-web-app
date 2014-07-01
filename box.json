@@ -1,0 +1,20 @@
+{
+    "chmod": "0755",
+    "directories": [
+        "src", "app"
+    ],
+    "files": [
+        "LICENSE"
+    ],
+    "finder": [
+        {
+            "name": "*",
+            "exclude": ["Tests", "tests", "phpunit", "mockery", "guzzle", "behat", "sebastian", "sqmk", "twitter"],
+            "in": "vendor"
+        }
+    ],
+    "git-version": "package_version",
+    "main": "app/console",
+    "output": "deck36-plan9-storm.phar",
+    "stub": true
+}

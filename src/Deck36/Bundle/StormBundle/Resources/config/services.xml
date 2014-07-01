@@ -1,0 +1,145 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    
+    <parameters>
+        
+        <parameter key="deck36_storm.command.high_five_bolt.class">Deck36\Bundle\StormBundle\Command\HighFiveBolt</parameter>
+        <parameter key="deck36_storm.command.kitten_robbers_bolt.class">Deck36\Bundle\StormBundle\Command\KittenRobbersFromOuterSpaceBolt</parameter>
+        <parameter key="deck36_storm.command.prime_cat_bolt.class">Deck36\Bundle\StormBundle\Command\PrimeCatBolt</parameter>
+        <parameter key="deck36_storm.command.raider_of_robbers_bolt.class">Deck36\Bundle\StormBundle\Command\RaiderOfTheKittenRobbersBolt</parameter>
+        <parameter key="deck36_storm.command.record_breaker_bolt.class">Deck36\Bundle\StormBundle\Command\RecordBreakerBolt</parameter>
+        <parameter key="deck36_storm.command.record_master_bolt.class">Deck36\Bundle\StormBundle\Command\RecordMasterBolt</parameter>
+        <parameter key="deck36_storm.command.status_level_bolt.class">Deck36\Bundle\StormBundle\Command\StatusLevelBolt</parameter>
+        <parameter key="deck36_storm.command.stumble_blunder_bolt.class">Deck36\Bundle\StormBundle\Command\StumbleBlunderBolt</parameter>
+
+    </parameters>
+
+
+    <!--
+    <services>
+        <service id="deck36_storm.example" class="%deck36_storm.example.class%">
+            <argument type="service" id="service_id" />
+            <argument>plain_value</argument>
+            <argument>%parameter_name%</argument>
+        </service>
+    </services>
+    -->
+
+        
+
+    <services>
+
+        <service id="deck36_storm.command.high_five_bolt"
+                 class="%deck36_storm.command.high_five_bolt.class%">              
+            <argument type="service" id="service_container" />  
+            <argument>%highfive_badge_timewindow%</argument>        
+
+            <argument>%highfive__badge_name%</argument>  
+            <argument>%highfive__badge_text%</argument>  
+            <argument>%highfive__badge_size%</argument>  
+            <argument>%highfive__badge_color%</argument> 
+            <argument>%highfive__badge_effect%</argument>
+
+        </service>
+
+        <service id="deck36_storm.command.kitten_robbers_bolt"
+                 class="%deck36_storm.command.kitten_robbers_bolt.class%">              
+            <argument type="service" id="service_container" />                  
+
+            <argument>%kittenrobbers__badge_name%</argument>  
+            <argument>%kittenrobbers__badge_text%</argument>  
+            <argument>%kittenrobbers__badge_size%</argument>  
+            <argument>%kittenrobbers__badge_color%</argument> 
+            <argument>%kittenrobbers__badge_effect%</argument>
+
+        </service>
+
+        <service id="deck36_storm.command.prime_cat_bolt"
+                 class="%deck36_storm.command.prime_cat_bolt.class%">              
+            <argument type="service" id="service_container" />  
+            <argument>%primecat_badge_timewindow%</argument>
+
+            <argument>%primecat__badge_name%</argument>  
+            <argument>%primecat__badge_text%</argument>  
+            <argument>%primecat__badge_size%</argument>  
+            <argument>%primecat__badge_color%</argument> 
+            <argument>%primecat__badge_effect%</argument>
+                  
+        </service>
+
+        <service id="deck36_storm.command.raider_of_robbers_bolt"
+                 class="%deck36_storm.command.raider_of_robbers_bolt.class%">              
+            <argument type="service" id="service_container" />
+            <argument>%raider_of_the_robbers_badge_timewindow%</argument>                  
+            <argument>%raider_of_the_robbers_the_chosen_one_timewindow%</argument>
+
+            <argument>%raider_of_the_robbers__badge_name%</argument>  
+            <argument>%raider_of_the_robbers__badge_text%</argument>  
+            <argument>%raider_of_the_robbers__badge_size%</argument>  
+            <argument>%raider_of_the_robbers__badge_color%</argument> 
+            <argument>%raider_of_the_robbers__badge_effect%</argument>
+
+        </service>
+
+        <service id="deck36_storm.command.record_breaker_bolt"
+                 class="%deck36_storm.command.record_breaker_bolt.class%">              
+            <argument type="service" id="service_container" />
+
+            <argument>%recordbreaker__badge_name%</argument>  
+            <argument>%recordbreaker__badge_text%</argument>  
+            <argument>%recordbreaker__badge_size%</argument>  
+            <argument>%recordbreaker__badge_color%</argument> 
+            <argument>%recordbreaker__badge_effect%</argument>
+
+        </service>
+
+        <service id="deck36_storm.command.record_master_bolt"
+                 class="%deck36_storm.command.record_master_bolt.class%">              
+            <argument type="service" id="service_container" />
+
+            <argument>%recordmaster__badge_name%</argument>  
+            <argument>%recordmaster__badge_text%</argument>  
+            <argument>%recordmaster__badge_size%</argument>  
+            <argument>%recordmaster__badge_color%</argument> 
+            <argument>%recordmaster__badge_effect%</argument>
+
+        </service>
+        
+        <service id="deck36_storm.command.status_level_bolt"
+                 class="%deck36_storm.command.status_level_bolt.class%">                               
+            <argument type="service" id="service_container" />
+            <argument>%status_level_config%</argument>                                
+
+            <argument>%status_level__badge_name%</argument>  
+            <argument>%status_level__badge_text%</argument>  
+            <argument>%status_level__badge_size%</argument>  
+            <argument>%status_level__badge_color%</argument> 
+            <argument>%status_level__badge_effect%</argument>
+
+        </service>
+
+        <service id="deck36_storm.command.stumble_blunder_bolt"
+                 class="%deck36_storm.command.stumble_blunder_bolt.class%">              
+            <argument type="service" id="service_container" />
+            <argument>%stumble_blunder_badge_timewindow%</argument>
+            <argument>%stumble_blunder_badge_max_tolerance%</argument>      
+
+            <argument>%stumble_blunder__badge_name%</argument>  
+            <argument>%stumble_blunder__badge_text%</argument>  
+            <argument>%stumble_blunder__badge_size%</argument>  
+            <argument>%stumble_blunder__badge_color%</argument> 
+            <argument>%stumble_blunder__badge_effect%</argument>
+
+        </service>
+
+
+    </services>
+
+</container>
+
+
+

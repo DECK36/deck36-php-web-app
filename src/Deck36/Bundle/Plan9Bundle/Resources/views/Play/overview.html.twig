@@ -1,0 +1,62 @@
+{% extends 'Deck36Plan9Bundle::layout.html.twig' %}
+
+{% block title %}Deck36Plan9Bundle:Play:overview{% endblock %}
+
+{% block body %}
+    {% block jumbotron %}
+
+    {% endblock %}
+    <hr>
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-10">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Overall Gamestatus</div>
+                    <div class="table-responsive">
+                        <table id="overview-grid" class="table-bordered" style="background-image: url({{ overview.solution_image }})">
+                            {% for row in 0..overview.rows-1 %}
+                                <tr id="overview-grid-row-{{ row }}">
+                                    {% for col in 0..overview.cols-1 %}
+                                        <td id="overview-grid-row-{{ row }}-col-{{ col }}"
+                                            class="
+                                                 {% set searchString = '[' ~ row ~ ',' ~ col ~ ']' %}
+                                                 {% if searchString in overview.solved_pix %}
+                                                    overview-grid-col-open
+                                                 {% else %}
+                                                    overview-grid-col-closed
+                                                 {% endif %}
+                                        ">
+                                        </td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div id="highscores" class="panel panel-primary">
+                    <div class="panel-heading">Highscores</div>
+                    <ul class="list-group">
+                        {% for highscore in overview.highscores %}
+                            <li class="list-group-item">
+                                <span class="badge">{{ highscore.1 }}</span>
+                                {{ highscore.0 }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+{% block javascripts %}
+    <script type="application/javascript">
+        var PLAYGROUND = false;
+        var OVERVIEW = true;
+    </script>
+    {{ parent() }}
+{% endblock %}

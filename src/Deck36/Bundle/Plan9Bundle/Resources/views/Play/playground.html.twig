@@ -1,0 +1,105 @@
+{% extends 'Deck36Plan9Bundle::layout.html.twig' %}
+
+{% block title %}Deck36Plan9Bundle:Play:playground{% endblock %}
+
+{% block body %}
+    <div id="archivements">
+        <ul>
+
+        </ul>
+    </div>
+    {% block jumbotron %}
+            <p class="lead">
+                {% trans %}
+                    Check the kittens and become the kitten master. Beware of the robbers. Have a Plan9.
+                {% endtrans %}
+            </p>
+
+    {% endblock %}
+    <hr>
+    {% block innercontent %}
+        <div class="row">
+            <div class="col-md-12">
+                <div id="player_points" class="panel panel-primary">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <span class="badge" id="points">{{ app.user.points }}</span>
+                            {% trans %}Your Points{% endtrans %}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Better have Plan9</div>
+                    <div class="table-responsive">
+                        <table id="playground-grid" class="table-bordered">
+                            {% for row in 0..playground.rows-1 %}
+                                <tr id="playground-grid-row-{{ row }}">
+                                    {% for col in 0..playground.cols-1 %}
+                                        <td id="playground-grid-row-{{ row }}-col-{{ col }}" class="playground-square">
+                                        </td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">Comparison Image</div>
+                            <div id="table-responsive">
+                                <table id="cat_image" class="table-bordered" align="center">
+                                    <tr>
+                                        <td id="cat_image_viewport">
+
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">Your Archivements</div>
+                            <ul id="badges">
+                                {% for badge in playground.badges %}
+                                    <li>{{ badge.name }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div id="highscores" class="panel panel-primary">
+                    <div class="panel-heading">Highscores</div>
+                    <ul class="list-group" id="highscores-list">
+                        {% for highscore in playground.highscores %}
+                            <li class="list-group-item">
+                                <span class="badge">{{ highscore.1 }}</span>
+                                {{ highscore.0 }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+    <hr>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="application/javascript">
+        var PLAYGROUND = true;
+        var OVERVIEW = false;
+    </script>
+    {{ parent() }}
+{% endblock %}

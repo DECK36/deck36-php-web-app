@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        
+        <parameter key="deck36_plan9.form.type.registration_form_type.class">Deck36\Bundle\Plan9Bundle\Form\Type\RegistrationFormType</parameter>
+        <parameter key="deck36_plan9.event_listener.mobile_device_detection.class">Deck36\Bundle\Plan9Bundle\EventListener\MobileDeviceDetectionListener</parameter>
+        
+        <!--
+        <parameter key="deck36_plan9.command.plan9_initialize.class">Deck36\Bundle\Plan9Bundle\Command\Plan9Initialize</parameter>
+        -->
+
+        
+    </parameters>
+
+    <services>
+
+        <service id="deck36_plan9.form.type.registration_form_type"
+                 class="%deck36_plan9.form.type.registration_form_type.class%">
+            <tag name="form.type" alias="deck36_plan9_form_type_user_registration" />
+            <argument>%fos_user.model.user.class%</argument>
+        </service>
+
+        <service id="deck36_plan9.event_listener.mobile_device_detection"
+                 class="%deck36_plan9.event_listener.mobile_device_detection.class%">
+            <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest" />
+        </service>
+
+        <!--
+        <service id="deck36_plan9.command.plan9_initialize"
+                 class="%deck36_storm.command.plan9_initialize.class%">              
+            <argument type="service" id="service_container" />                  
+        </service>
+        -->
+
+    </services>
+
+</container>

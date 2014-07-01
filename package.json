@@ -1,0 +1,15 @@
+{
+    "name": "deck36-php-web-app",
+    "title": "deck36-php-web-app for plan9",
+    "company": "DECK36 GmbH & Co. KG",
+    "version": "1.0.0",
+    "author": {
+        "name": "deck36",
+        "email": "support@deck36.de",
+        "homepage": "http://deck36.de"
+    },
+    "description": "Amazing MMORPG",
+    "dependencies": {
+        "less": "~1.7.0"
+    }
+}

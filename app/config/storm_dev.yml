@@ -1,0 +1,34 @@
+imports:
+    - { resource: storm.yml }
+
+deck36_storm:
+    debug:              true
+    default_parallelism_hint:    1
+    default_num_tasks:   1
+    rabbitmq:
+        host:           "localhost" #"www.plan9-dev.deck36.de"
+        port:           5672
+        user:           "guest"
+        pass:           "guest"
+        vhost:          "/"
+        heartbeat:      10
+        prefetch:       1
+        spout_tasks:    4
+    php:
+        executor:          "/usr/bin/php"
+        #executor:           "/usr/local/bin/hhvm"
+        executor_params:
+            - "-d"
+            - "foo=bar"
+        #    - "-v"
+        #    - "ErrorHandling.WarningFrequency=0"
+        #    - "-v"
+        #    - "ErrorHandling.NoticeFrequency=0"
+        main:               "deck36-plan9-storm.phar" # "/Users/steschas/universe/DECK36/WS-STORM/p9fok/deck36-vagrant-p9fok/source/plan9/deck36-storm-backend/resources/deck36-php-web-app/deck36-plan9-storm.phar"  # "/Users/steschas/universe/DECK36/WS-STORM/p9fok/deck36-vagrant-p9fok/source/plan9/deck36-storm-backend/resources/deck36-php-web-app/app/console"
+        main_params:
+            - "--env=dev"
+
+    HighFiveBolt:
+        badge_timewindow:   50
+
+

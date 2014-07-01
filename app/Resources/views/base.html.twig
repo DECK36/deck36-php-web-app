@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Plan9 from Outer Kitten{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block stylesheets %}
+        {% stylesheets '@Deck36Plan9Bundle/Resources/public/less/main.less' filter='less,cssrewrite,?yui_css' output='css/presentation.css'%}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<body>
+<div class="container">
+    {% block header %}
+        {% block navbar %}
+            <div class="navbar">
+                <a class="navbar-brand" href="https://deck36.de">
+                    <img alt="DECK36" src="/images/logo-small.jpg" />
+                </a>
+                {% block navbarinner %}
+                    <ul class="nav nav-pills nav-justified">
+                        {% block navbaritems %}
+                            <li {% if app.request.attributes.get('_route') == 'plan9_home'%}class="active"{% endif %}>
+                                <a href="{{ url('plan9_home') }}">{% trans %}Plan9 Home{% endtrans %}</a>
+                            </li>
+                            <li {% if app.request.attributes.get('_route') == 'plan9_play_overview'%}class="active"{% endif %}>
+                                <a href="{{ url('plan9_play_overview') }}">{% trans %}Plan9 Gamestatus{% endtrans %}</a>
+                            </li>
+                            <li {% if app.request.attributes.get('_route') == 'plan9_play_playground'%}class="active"{% endif %}>
+                                <a href="{{ url('plan9_play_playground') }}">{% trans %}Plan9 Playground{% endtrans %}</a>
+                            </li>
+                            {% if (app.request.attributes.get('_route') != 'fos_user_security_logout')
+                                and (app.request.attributes.get('_route') != 'fos_user_security_login')
+                                and (app.request.attributes.get('_route') != 'fos_user_registration_register')%}
+                                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                                    <script type="application/javascript">
+                                        var USER_ID = {{ app.user.id }};
+                                        var DEVMODE = true;
+                                        var ORG_ID = 11111111-1111-1111-1111-111111111111;
+                                    </script>
+                                    <li>
+                                        <a id ="nav_li_href_logout" href="{{ path('fos_user_security_logout') }}">
+                                            {{ 'layout.logged_in_as'|trans({'%username%': app.user.username},
+                                            'FOSUserBundle') }} | {{ 'Logout'|trans({}, 'FOSUserBundle') }}
+                                        </a>
+                                    </li>
+                                {% else %}
+                                    <li>
+                                        <a id="nav_li_href_login" href="{{ path('fos_user_security_login') }}">
+                                            {{ 'Login'|trans({}, 'FOSUserBundle') }}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a id="nav_li_href_login" href="{{ path('fos_user_registration_register') }}">
+                                            {{ 'Register'|trans({}, 'FOSUserBundle') }}
+                                        </a>
+                                    </li>
+                                {% endif %}
+                            {% endif %}
+                        {% endblock %}
+                    </ul>
+                {% endblock %}
+            </div><!-- /.navbar -->
+        {% endblock %}
+    {% endblock %}
+    {% block body %}{% endblock %}
+    <br />
+    {% block footer %}
+        <div class="footer">
+            <p>&copy; Deck36 GmbH & Co. KG 2014</p>
+        </div>
+    {% endblock %}
+</div> <!-- /container -->
+{% block javascripts %}
+    {% javascripts
+    '%kernel.root_dir%/../vendor/jquery/jquery/jquery-1.11.0.js'
+    '%kernel.root_dir%/../vendor/twitter/bootstrap/js/*' filter='?yui_js' output='js/compiled/bootstrap.js'%}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+</body>
+</html>

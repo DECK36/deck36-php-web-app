@@ -1,0 +1,56 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+        {% block jumbotron %}
+        <!-- Jumbotron -->
+            <div class="jumbotron">
+                <h1>The Plan9 from Outer Kitten a.k.a. Kitten Robbers from Outer Space</h1>
+                <p class="lead">Amazing MMORPG for mobile and other devices.</p>
+            </div>
+        {% endblock %}
+        <hr>
+        {% block innercontent %}
+            <div class="row">
+                <div class="col-md-4">
+                    <a class="btn btn-default" href="{{ url('plan9_play_playground') }}">
+                        <img src="/bundles/deck36plan9/images/p9fok.jpg" class="img-responsive img-rounded">
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a class="btn btn-default" href="{{ url('plan9_play_playground') }}">
+                            <img src="/bundles/deck36plan9/images/p9fok.jpg" class="img-responsive img-rounded">
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a class="btn btn-default" href="{{ url('plan9_play_playground') }}">
+                        <img src="/bundles/deck36plan9/images/p9fok.jpg" class="img-responsive img-rounded">
+                    </a>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Game Overview</h2>
+                    <p>Check it out now!</p>
+                    <p><a class="btn btn-default" href="{{ url('plan9_play_overview') }}">Game Status Overview &raquo;</a></p>
+                </div>
+                <div class="col-md-6">
+                    <span class="pull-right">
+                        <h2>Join the Game</h2>
+                        <p>Be part of the insane kitten robbery.</p>
+                        <p><a class="btn btn-default" href="{{ url('plan9_play_playground') }}">Let me in &raquo;</a></p>
+                    </span>
+                </div>
+            </div>
+        {% endblock %}
+        <hr>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts
+        '@Deck36Plan9Bundle/Resources/public/js/jquery-ui-1.10.4.custom.min.js'
+        '@Deck36Plan9Bundle/Resources/public/js/plan9.js'
+    %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

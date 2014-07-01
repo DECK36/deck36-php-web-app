@@ -1,0 +1,25 @@
+{% extends 'Deck36Plan9Bundle::layout.html.twig' %}
+
+{% block body %}
+    {% block jumbotron %}
+        <!-- Jumbotron -->
+        <div class="jumbotron">
+            <h1>Join the insanity!</h1>
+            <h2>If you cannot login, try {{  url('fos_user_security_login') }} with ssl (means https)</h2>
+        </div>
+    {% endblock %}
+    <hr>
+    {% block innercontent %}
+        {% for type, messages in app.session.flashBag.all %}
+            {% for message in messages %}
+                <div class="alert-{{ type }}">
+                    {{ message|trans({}, 'FOSUserBundle') }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        {% block fos_user_content %}
+        {% endblock fos_user_content %}
+    {% endblock %}
+    <hr>
+{% endblock %}

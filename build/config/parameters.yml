@@ -1,0 +1,51 @@
+# These parameters can be imported into other config files
+# by enclosing the key with % (like %database_user%)
+# Comments start with '#', as in php.ini
+parameters:
+    # General config
+        locale            : ${config.locale}
+        secret            : ${config.secret}
+        http_port: ${config.router.http_port}
+        https_port: ${config.router.https_port}
+
+# #############################################################
+# Default DATABASE CONNECTION PARAMETERS
+# #############################################################
+        default_database_driver     : ${config.database.default.driver}
+        default_database_host       : ${config.database.default.host}
+        default_database_port       : ${config.database.default.port}
+        default_database_name       : ${config.database.default.name}
+        default_database_user       : ${config.database.default.user}
+        default_database_password   : ${config.database.default.password}
+
+        mailer_transport  : ${config.mailer.transport}
+        mailer_host       : ${config.mailer.host}
+        mailer_user       : ${config.mailer.user}
+        mailer_password   : ${config.mailer.password}
+
+    # Host Suffix such as .integration.opm-server.org - set to ':8080' when working on dev
+        host_name: ${config.host.name}
+        base_url: ${config.base.url}
+
+    # cookie related stuff
+        cookie_prefix : ${config.cookie_prefix}
+        cookie_name : ${config.cookie_prefix}_deck36
+        cookie_lifetime : ${config.cookie_lifetime}
+        cookie_domain: ${config.cookie_domain}
+
+        build.revision : ${build.revision}
+
+        config_path_logs : ${config.path.logs}
+
+        default_redis_client_type: ${config.redis.clients.default.type}
+        default_redis_client_alias: ${config.redis.clients.default.alias}
+        default_redis_client_dsn: ${config.redis.clients.default.dsn}
+
+
+    # badges 
+
+        # HighFive badges
+        # timewindow in seconds
+        default_highfive_timewindow: 50
+
+        

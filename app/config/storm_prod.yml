@@ -1,0 +1,32 @@
+imports:
+    - { resource: storm.yml }
+
+deck36_storm:
+    debug:  false
+    default_parallelism_hint:    1
+    default_num_tasks:   1
+    php:
+        executor:          "/usr/bin/php"
+        #executor:           "/usr/bin/hhvm"
+        executor_params:
+            - "-d"
+            - "foo=bar"
+        #    - "-v"
+        #    - "ErrorHandling.WarningFrequency=0"
+        #    - "-v"
+        #    - "ErrorHandling.NoticeFrequency=0"
+        main:               "deck36-plan9-storm.phar"
+        main_params:
+            - "--env=dev"
+
+    rabbitmq:
+        host:           "localhost"
+        port:           5672
+        user:           "guest"
+        pass:           "guest"
+        vhost:          "/"
+        heartbeat:      10
+        prefetch:       1
+        spout_tasks:    4
+
+

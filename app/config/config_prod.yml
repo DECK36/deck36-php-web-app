@@ -1,0 +1,29 @@
+imports:
+    - { resource: config.yml }
+    - { resource: storm_prod.yml }
+
+monolog:
+    handlers:
+        main:
+            type:         fingers_crossed
+            action_level: error
+            handler:      nested
+        nested:
+            type:  stream
+            path:  "%kernel.logs_dir%/%kernel.environment%.log"
+            level: debug
+        console:
+            type:  console
+
+#snc_redis:
+#   doctrine:
+#      metadata_cache:
+#          client: default
+#          entity_manager: default          # the name of your entity_manager connection
+#          document_manager: default        # the name of your document_manager connection
+#      result_cache:
+#          client: default
+#          entity_manager: [default]  # you may specify multiple entity_managers
+#      query_cache:
+#          client: default
+#          entity_manager: default

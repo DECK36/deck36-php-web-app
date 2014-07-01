@@ -1,0 +1,176 @@
+deck36_storm:
+    HighFiveBolt:
+        main:       "storm:bolt:HighFive"
+        params:
+        rabbitmq:
+            exchange:        "plan9"
+            routing_key:     "cbt.#"
+            target_exchange: "plan9-backchannel"
+        badge_timewindow:   35
+        badge:
+            name: "HighFive"
+            text: "Hands up! You used the same cat to solve! Hooray!"
+            color:   "red"
+            size:    "10em"
+            effect:  "explode"
+
+
+    KittenRobbersFromOuterSpaceBolt:
+        main:       "storm:bolt:KittenRobbers"
+        params:
+        rabbitmq:
+            exchange:        "plan9"
+            routing_key:     "cbt.#"
+            target_exchange: "plan9-backchannel"
+        robber_frequency:    2
+        badge:
+            name:   "KittenRobbersFromOuterSpace"
+            text:   "The mysterious Kitten Robbers came from Outer Space and took your cat away! Oh no!!!!1"
+            color:   "red"
+            size:    "10em"
+            effect:  "puff"
+
+
+
+    RecordBreakerBolt:
+        main:       "storm:bolt:RecordBreaker"
+        params:
+        rabbitmq:
+            exchange:        "plan9"
+            routing_key:     "#"
+            target_exchange: "plan9-backchannel"
+        badge:
+            name:   "RecordBreaker"
+            text:   "You broke your own record! Woo hoo!"
+            color:   "red"
+            size:    "10em"
+            effect:  "drop"
+
+
+    RecordMasterBolt:
+        main:       "storm:bolt:RecordMaster"
+        params:
+        badge:
+            name:   "RecordMaster"
+            text:   "Mastered! You're the No. 1 Record Breaker! w00000t!"
+            color:   "red"
+            size:    "10em"
+            effect:  "explode"
+
+
+
+    StatusLevelBolt:
+        main:       "storm:bolt:StatusLevel"
+        params:
+        rabbitmq:
+            exchange:        "plan9"
+            routing_key:     "points.#"
+            target_exchange: "plan9-backchannel"
+        levels:
+            "Hatched Kitty":        0
+            "Player Kitty":         1
+            "Tweety Kitty":         20
+            "Hundred Kitties":      100
+            "Pinky Kitty": 150
+            "Greedy Kitty": 196
+            "Needy Kitty": 233
+            "Meaty Kitty": 266
+            "Die Grinsekatze": 299
+            "Halo Kitty": 333
+            "Cat Mandu": 387
+            "Chester Cat": 402
+            "Hodge Podge": 442
+            "Grumpy Cat": 503
+            "Daisy Kitty": 555
+            "Troll Cat": 597
+            "Kitty Doll": 661
+            "Lazy Kitty": 685
+            "Cap Cat Cartoon": 703
+            "Pogo Kitty": 780
+            "Der gestiefelte Kater": 833
+            "Pony Kitty": 855
+            "Cat Balance": 887
+            "Juggler Cat": 904
+            "Kitty Mouse Mouse": 932
+            "Cat Poem": 999
+            "Onyx Cat": 1023
+            "Bully Cat": 1042
+            "Catroller": 1088
+            "Markovian Cat": 1111
+            "Missy Kitty Cat": 1289
+            "Sponsored Cat": 1421
+            "Kitty LaChatte": 1511
+            "Colonel Meow": 1590
+            "Uncle Cat": 1670
+            "Big ": 1733
+            "Hamilton, the Hipster Cat": 1833
+            "Cat Kong": 1912
+            "Donkey Kitty": 1967
+            "Vampyra Cat": 2001
+            "Slayer Cat": 2121
+            "Tomcat": 2222
+            "Cat Commander": 2685
+            "Bela Lugosi": 8305
+            "Bhagwahn Guru Guru Guru": 17231
+            "Vampire Alien Overlord": 28920
+            "Ed Wood": 43216
+        badge:
+            name:   "StatusLevel"
+            text:   "You achieved a new level! Welcome!"
+            color:   "red"
+            size:    "10em"
+            effect:  "explode"
+
+
+
+    PrimeCatBolt:
+        main:       "storm:bolt:PrimeCat"
+        params:
+        rabbitmq:
+            exchange:        "plan9"
+            routing_key:     "points.#"
+            target_exchange: "plan9-backchannel"
+        primecat_frequency:  10
+        badge_timewindow:    60
+        badge:
+            name:   "PrimeCat"
+            text:   "You made more points in the recent past than any other player! You're so prime!"
+            color:   "red"
+            size:    "10em"
+            effect:  "puff"
+
+
+    StumbleBlunderBolt:
+        main:       "storm:bolt:StumbleBlunder"
+        params:
+        rabbitmq:
+            exchange:        "plan9"
+            routing_key:     "cbt.#"
+            target_exchange: "plan9-backchannel"
+        badge_timewindow:   180
+        max_tolerance:      5
+        badge:
+            name:   "StumbleBlunder"
+            text:   "So many errors in a row! Oh no! Gotta teach you somethin'! You must earn the priviledge to gain points again!"
+            color:   "red"
+            size:    "10em"
+            effect:  "explode"
+
+
+
+    RaiderOfTheKittenRobbersBolt:
+        main:       "storm:bolt:RaiderOfTheKittenRobbers"
+        params:
+        rabbitmq:
+            target_exchange: "plan9-backchannel"
+        badge_timewindow:           60
+        the_chosen_one_timewindow:  115
+        badge:
+            name:   "RaiderOfTheKittenRobbers"
+            text:   "Your HighFive taught the Kitten Robbers a lesson! You're now the Chosen One!"
+            color:   "red"
+            size:    "10em"
+            effect:  "explode"
+
+
+

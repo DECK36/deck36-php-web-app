@@ -1,0 +1,26 @@
+Index: vendor/snc/redis-bundle/Snc/RedisBundle/Session/Storage/Handler/RedisSessionHandler.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- vendor/snc/redis-bundle/Snc/RedisBundle/Session/Storage/Handler/RedisSessionHandler.php	(revision )
++++ vendor/snc/redis-bundle/Snc/RedisBundle/Session/Storage/Handler/RedisSessionHandler.php	(revision )
+@@ -149,7 +149,8 @@
+             }
+         }
+
+-        return $this->redis->get($this->getRedisKey($sessionId)) ?: '';
++        $_SESSION = json_decode($this->redis->get($this->getRedisKey($sessionId)), true);
++        return isset($_SESSION) && !empty($_SESSION) && $_SESSION != null ? session_encode() : '';
+     }
+
+     /**
+@@ -157,6 +158,8 @@
+      */
+     public function write($sessionId, $data)
+     {
++        // Use non serialized session data to convert to json
++        $data = json_encode($_SESSION);
+         if (0 < $this->ttl) {
+             $this->redis->setex($this->getRedisKey($sessionId), $this->ttl, $data);
+         } else {
