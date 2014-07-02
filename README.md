@@ -26,7 +26,7 @@ build process with option -Denvironment=<env>. The default is dev.
 
 1. Start building your app by calling
 ```
-./phing.phar build -Denvironment=\<env\>
+./phing.phar build
 ```
 
 ## Development & Testing
