@@ -28,7 +28,6 @@ build process with option -Denvironment=<env>. The default is dev.
 ```
 ./composer.phar self-update
 ```
-
 2. Start building your app by calling
 ```
 ./phing.phar build
