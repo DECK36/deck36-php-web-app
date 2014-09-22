@@ -107,10 +107,25 @@ class StatusLevelBolt extends BasicBolt
         }
         */
   
-
+        if ($pointsCurrent < 0) {
+            $pointsCurrent = 0;
+            $pointsIncrement = 0;            
+        }
+        
+        if ($pointsIncrement < 0) {
+            $pointsCurrent = 0;
+            $pointsIncrement = 0;            
+        }
 
         // get new value of points 
         $pointsPrevious = $pointsCurrent - $pointsIncrement;
+
+        if ($pointsPrevious < 0) {
+            $pointsCurrent = 0;
+            $pointsIncrement = 0;            
+            $pointsPrevious = 0;
+        }
+
 
         // get current status level 
         $statusCurrent = $this->binary_search($pointsCurrent, $this->levelConfig);
