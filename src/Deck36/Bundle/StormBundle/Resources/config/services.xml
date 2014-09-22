@@ -8,6 +8,11 @@
     <parameters>
         
         <parameter key="deck36_storm.command.high_five_bolt.class">Deck36\Bundle\StormBundle\Command\HighFiveBolt</parameter>
+        <parameter key="deck36_storm.command.empty_tick_tuple_bolt.class">Deck36\Bundle\StormBundle\Command\EmptyTickTupleBolt</parameter>
+        
+        <parameter key="deck36_storm.command.deluded_kitten_robbers_bolt.class">Deck36\Bundle\StormBundle\Command\DeludedKittenRobbers</parameter>
+        
+
         <parameter key="deck36_storm.command.kitten_robbers_bolt.class">Deck36\Bundle\StormBundle\Command\KittenRobbersFromOuterSpaceBolt</parameter>
         <parameter key="deck36_storm.command.prime_cat_bolt.class">Deck36\Bundle\StormBundle\Command\PrimeCatBolt</parameter>
         <parameter key="deck36_storm.command.raider_of_robbers_bolt.class">Deck36\Bundle\StormBundle\Command\RaiderOfTheKittenRobbersBolt</parameter>
@@ -45,6 +50,37 @@
             <argument>%highfive__badge_effect%</argument>
 
         </service>
+
+
+        
+        <service id="deck36_storm.command.empty_tick_tuple_bolt"
+                 class="%deck36_storm.command.empty_tick_tuple_bolt.class%">              
+            <argument type="service" id="service_container" />  
+           
+            <argument>%emptyticktuple__badge_name%</argument>  
+            <argument>%emptyticktuple__badge_text%</argument>  
+            <argument>%emptyticktuple__badge_size%</argument>  
+            <argument>%emptyticktuple__badge_color%</argument> 
+            <argument>%emptyticktuple__badge_effect%</argument>
+
+        </service>
+
+        
+
+        <service id="deck36_storm.command.deluded_kitten_robbers_bolt"
+                 class="%deck36_storm.command.deluded_kitten_robbers_bolt.class%">              
+            <argument type="service" id="service_container" />  
+           
+            <argument>%deludedkittenrobbers__badge_name%</argument>  
+            <argument>%deludedkittenrobbers__badge_text%</argument>  
+            <argument>%deludedkittenrobbers__badge_size%</argument>  
+            <argument>%deludedkittenrobbers__badge_color%</argument> 
+            <argument>%deludedkittenrobbers__badge_effect%</argument>
+
+        </service>
+
+
+
 
         <service id="deck36_storm.command.kitten_robbers_bolt"
                  class="%deck36_storm.command.kitten_robbers_bolt.class%">              

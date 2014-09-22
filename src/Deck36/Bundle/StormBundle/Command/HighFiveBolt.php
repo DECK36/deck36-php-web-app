@@ -129,7 +129,7 @@ class HighFiveBolt extends BasicBolt
                 $highFiveBadge['user']['user_id'] = $user;
                                
                 // emit the badge
-                $this->emit([$highFiveBadge]);    
+                $this->emit([$highFiveBadge], null, [$tuple]); // $tuple, $stream, $anchors    
 
                 // persist badge to database
                 $userRef = $this->userManager->findUserBy(array('id' => $user));
@@ -143,6 +143,8 @@ class HighFiveBolt extends BasicBolt
                 $this->userManager->updateUser($userRef);
             
             } // foreach
+
+            $this->ack($tuple);
 
         } // if 
 

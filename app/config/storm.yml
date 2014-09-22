@@ -11,7 +11,37 @@ deck36_storm:
             name: "HighFive"
             text: "Hands up! You used the same cat to solve! Hooray!"
             color:   "red"
-            size:    "10em"
+            size:    "2em"
+            effect:  "explode"
+
+    EmptyTickTupleBolt:
+        main:       "storm:bolt:EmptyTickTuple"
+        params:
+        rabbitmq:
+            exchange:        "plan9"
+            routing_key:     "#"
+            target_exchange: "plan9-backchannel"
+        tick_frequency:     10
+        badge:
+            name: "EmptyTickTuple"
+            text: "Something just happened, that didn't just happen."
+            color:   "red"
+            size:    "2em"
+            effect:  "explode"
+
+    DeludedKittenRobbersBolt:
+        main:       "storm:bolt:DeludedKittenRobbers"
+        params:
+        rabbitmq:
+            exchange:        "plan9"
+            routing_key:     "#"
+            target_exchange: "plan9-backchannel"
+        attack_frequency_secs:  10        
+        badge:
+            name: "DeludedKittenRobbers"
+            text: "The deluded Kitten Robbers came from Outer Space to punish you for exhilarating too many too young kittens."
+            color:   "red"
+            size:    "2em"
             effect:  "explode"
 
 
@@ -27,7 +57,7 @@ deck36_storm:
             name:   "KittenRobbersFromOuterSpace"
             text:   "The mysterious Kitten Robbers came from Outer Space and took your cat away! Oh no!!!!1"
             color:   "red"
-            size:    "10em"
+            size:    "2em"
             effect:  "puff"
 
 
@@ -43,7 +73,7 @@ deck36_storm:
             name:   "RecordBreaker"
             text:   "You broke your own record! Woo hoo!"
             color:   "red"
-            size:    "10em"
+            size:    "2em"
             effect:  "drop"
 
 
@@ -54,7 +84,7 @@ deck36_storm:
             name:   "RecordMaster"
             text:   "Mastered! You're the No. 1 Record Breaker! w00000t!"
             color:   "red"
-            size:    "10em"
+            size:    "2em"
             effect:  "explode"
 
 
@@ -69,29 +99,31 @@ deck36_storm:
         levels:
             "Hatched Kitty":        0
             "Player Kitty":         1
-            "Tweety Kitty":         20
+            "Tweety Kitty":         4
+            "Lonely Kitty":         6
+            "Greedy Kitty":         7            
+            "Cat Kong":             10
+            "Needy Kitty":          12
+            "Meaty Kitty":          15
+            "Die Grinsekatze":      20
+            "Halo Kitty":           22
+            "Cat Mandu":            25            
             "Hundred Kitties":      100
             "Pinky Kitty": 150
-            "Greedy Kitty": 196
-            "Needy Kitty": 233
-            "Meaty Kitty": 266
-            "Die Grinsekatze": 299
-            "Halo Kitty": 333
-            "Cat Mandu": 387
-            "Chester Cat": 402
-            "Hodge Podge": 442
-            "Grumpy Cat": 503
-            "Daisy Kitty": 555
-            "Troll Cat": 597
-            "Kitty Doll": 661
-            "Lazy Kitty": 685
-            "Cap Cat Cartoon": 703
-            "Pogo Kitty": 780
-            "Der gestiefelte Kater": 833
-            "Pony Kitty": 855
-            "Cat Balance": 887
-            "Juggler Cat": 904
-            "Kitty Mouse Mouse": 932
+            "Chester Cat": 202
+            "Hodge Podge": 242
+            "Grumpy Cat": 303
+            "Daisy Kitty": 355
+            "Troll Cat": 397
+            "Kitty Doll": 461
+            "Lazy Kitty": 485
+            "Cap Cat Cartoon": 503
+            "Pogo Kitty": 580
+            "Der gestiefelte Kater": 633
+            "Pony Kitty": 655
+            "Cat Balance": 687
+            "Juggler Cat": 704
+            "Kitty Mouse Mouse": 832
             "Cat Poem": 999
             "Onyx Cat": 1023
             "Bully Cat": 1042
@@ -104,7 +136,6 @@ deck36_storm:
             "Uncle Cat": 1670
             "Big ": 1733
             "Hamilton, the Hipster Cat": 1833
-            "Cat Kong": 1912
             "Donkey Kitty": 1967
             "Vampyra Cat": 2001
             "Slayer Cat": 2121
@@ -118,7 +149,7 @@ deck36_storm:
             name:   "StatusLevel"
             text:   "You achieved a new level! Welcome!"
             color:   "red"
-            size:    "10em"
+            size:    "2em"
             effect:  "explode"
 
 
@@ -136,7 +167,7 @@ deck36_storm:
             name:   "PrimeCat"
             text:   "You made more points in the recent past than any other player! You're so prime!"
             color:   "red"
-            size:    "10em"
+            size:    "2em"
             effect:  "puff"
 
 
@@ -153,7 +184,7 @@ deck36_storm:
             name:   "StumbleBlunder"
             text:   "So many errors in a row! Oh no! Gotta teach you somethin'! You must earn the priviledge to gain points again!"
             color:   "red"
-            size:    "10em"
+            size:    "2em"
             effect:  "explode"
 
 
@@ -169,7 +200,7 @@ deck36_storm:
             name:   "RaiderOfTheKittenRobbers"
             text:   "Your HighFive taught the Kitten Robbers a lesson! You're now the Chosen One!"
             color:   "red"
-            size:    "10em"
+            size:    "2em"
             effect:  "explode"
 
 

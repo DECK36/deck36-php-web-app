@@ -15,6 +15,6 @@
     ],
     "git-version": "package_version",
     "main": "app/console",
-    "output": "deck36-plan9-storm.phar",
+    "output": "target/resources/deck36-plan9-storm.phar",
     "stub": true
 }

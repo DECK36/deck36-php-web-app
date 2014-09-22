@@ -34,6 +34,24 @@ class Deck36StormExtension extends Extension
         $container->setParameter('highfive__badge_color',  $config['HighFiveBolt']['badge']['color']);
         $container->setParameter('highfive__badge_effect', $config['HighFiveBolt']['badge']['effect']);
         
+        // EmptyTickTupleBolt        
+        $container->setParameter('emptyticktuple__badge_name',   $config['EmptyTickTupleBolt']['badge']['name']);
+        $container->setParameter('emptyticktuple__badge_text',   $config['EmptyTickTupleBolt']['badge']['text']);
+        $container->setParameter('emptyticktuple__badge_size',   $config['EmptyTickTupleBolt']['badge']['size']);
+        $container->setParameter('emptyticktuple__badge_color',  $config['EmptyTickTupleBolt']['badge']['color']);
+        $container->setParameter('emptyticktuple__badge_effect', $config['EmptyTickTupleBolt']['badge']['effect']);
+        
+
+        // DeludedKittenRobbersBolt        
+        $container->setParameter('deludedkittenrobbers__badge_name',   $config['DeludedKittenRobbersBolt']['badge']['name']);
+        $container->setParameter('deludedkittenrobbers__badge_text',   $config['DeludedKittenRobbersBolt']['badge']['text']);
+        $container->setParameter('deludedkittenrobbers__badge_size',   $config['DeludedKittenRobbersBolt']['badge']['size']);
+        $container->setParameter('deludedkittenrobbers__badge_color',  $config['DeludedKittenRobbersBolt']['badge']['color']);
+        $container->setParameter('deludedkittenrobbers__badge_effect', $config['DeludedKittenRobbersBolt']['badge']['effect']);
+        
+
+
+
         // PrimeCatBolt
         $container->setParameter('primecat_badge_timewindow', $config['PrimeCatBolt']['badge_timewindow']);
 
