@@ -60,7 +60,8 @@ class PrimeCatBolt extends BasicBolt
 
         } else {
             
-            $this->updateCounters($tuple);        
+            $this->updateCounters($tuple);  
+            $this->ack($tuple);      
 
         }
     }
@@ -71,6 +72,8 @@ class PrimeCatBolt extends BasicBolt
        
         // log the counter array
         $this->sendLog("\n\n\n[PHP] PRIMECAT POINTSCOUNTER : " . serialize($this->pointsCounter)); 
+
+        if (count($this->pointsCounter) < 1) return; 
 
         // get the PrimeCat user
         $primeCats = array_keys($this->pointsCounter, max($this->pointsCounter));

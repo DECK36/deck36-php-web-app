@@ -24,7 +24,11 @@ For each of them you can create property-files containing for example database c
 Just put them into build/config/properties/<environment>/default.properties and invoke the
 build process with option -Denvironment=<env>. The default is dev.
 
-1. Start building your app by calling
+1. Update composer.phar
+```
+./composer.phar self-update
+```
+2. Start building your app by calling
 ```
 ./phing.phar build
 ```
