@@ -15,7 +15,6 @@
 .DS_Store
 ._.DS_Store
 bin/
-composer.lock
 config/*
 node_modules/
 ._*
