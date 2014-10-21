@@ -17,18 +17,19 @@ It is compatible to cats. Not to dogs.
 # Installation
 Yes. It can be installed.
 
-## Integration, Stage, Live
-
-You can have several environments like dev, integration, stage and live.
-For each of them you can create property-files containing for example database configs.
-Just put them into build/config/properties/<environment>/default.properties and invoke the
-build process with option -Denvironment=<env>. The default is dev.
-
-1. Update composer.phar
+1. Please enter the vagrant by
+```
+vagrant ssh
+```
+2. Go to the plan9 php source dir
+```
+cd ~/deck36-php-web-app
+```
+3. Update composer.phar
 ```
 ./composer.phar self-update
 ```
-2. Start building your app by calling
+4. Start building your app by calling
 ```
 ./phing.phar build
 ```
@@ -53,7 +54,7 @@ To start development on the project, just build the environment with the default
 ## test
 None.
 
-## reset the game
+## reset / prepare the game
 ```
  ./phing.phar initializeGame
 ```
@@ -65,8 +66,7 @@ This is important. Do it for faster results.
 - [FOSUserBundle Command Line Tools][1]
 
 ### Normal User
-You can just replace mike with your favorite name. If it is mike it is ok, too.
-
+You can just replace mike and mike`s mail address with your favorite name. If it is mike it is ok, too. :)
 ```
 php app/console fos:user:create mike mike@deck36.de testpwd
 ```
@@ -77,8 +77,7 @@ php app/console fos:user:create admin --super-admin
 ```
 # create pics
 ONLY needed if you want to have an other theme (like dogs theme) which makes this incompatible with cats.
-Mainly the following commands are just remainders for the creators. Maybe they were a little bit drunk when the wrote
- this.
+Mainly the following commands are just remainders for the creators. 
 
 ## select
 ```
