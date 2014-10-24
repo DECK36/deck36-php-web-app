@@ -46,6 +46,7 @@
                     configureApplication,
                     assetic-dump,
                     assets-install,
+                    clear-permissions,
                     cache-clear"
             description="Cleans the workspace, update sources and builds the whole application including unittests."
             />
