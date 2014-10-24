@@ -1,0 +1,113 @@
+{
+    "conf": {
+        "deck36_storm": {
+            "ExtendedKittenRobbersBolt": {
+                "main": "ExtendedKittenRobbersBolt.prod.js",
+                "params": null,
+                "rabbitmq": {
+                    "exchange": "plan9",
+                    "routing_key": "cbt.#",
+                    "target_exchange": "plan9-backchannel"
+                },
+                "badge_timewindow": 50,
+                "badge": {
+                    "name": "KittenRobbers",
+                    "text": "Kitten Robbers! Oh nooooo!",
+                    "color": "#232312",
+                    "size": "30em",
+                    "effect": "explode"
+                }
+            }
+        }
+    },
+    "context": {
+        "task->component": {
+            "1": "example-spout",
+            "2": "__acker",
+            "3": "example-bolt"
+        },
+        "taskid": 3
+    },
+    "pidDir": "./"
+}
+end
+{
+    "id": "-6955786537413359385",
+    "comp": "1",
+    "stream": "1",
+    "task": 9,
+    "tuple": [{
+        "type": "points",
+        "user_src": {
+            "user_socket_id": 1,
+            "user_id": 1
+        },
+        "user_target": {
+            "user_socket_id": 1,
+            "user_id": 1
+        },
+        "timestamp": "123456789101",
+        "version": 0.9,
+        "points": {
+            "total": 300,
+            "increment": 20
+        }
+    }]
+}
+end
+{
+    "id": "-6955786537413359385",
+    "comp": "1",
+    "stream": "1",
+    "task": 9,
+    "tuple": [{
+        "type": "points",
+        "user_src": {
+            "user_socket_id": 1,
+            "user_id": 1
+        },
+        "user_target": {
+            "user_socket_id": 1,
+            "user_id": 2
+        },
+        "timestamp": "123456789101",
+        "version": 0.9,
+        "points": {
+            "total": 300,
+            "increment": 20
+        }
+    }]
+}
+end
+{
+    "id": "-6955786537413359385",
+    "comp": "1",
+    "stream": "1",
+    "task": 9,
+    "tuple": [{
+        "type": "points",
+        "user_src": {
+            "user_socket_id": 1,
+            "user_id": 1
+        },
+        "user_target": {
+            "user_socket_id": 1,
+            "user_id": 2
+        },
+        "timestamp": "123456789101",
+        "version": 0.9,
+        "points": {
+            "total": 300,
+            "increment": 20
+        }
+    }]
+}
+end
+{
+    "id": "-6955786537413359385",
+    "comp": "__system",
+    "stream": "__tick",
+    "task": 9,
+    "tuple": ["nodejs", "hello"]
+}
+end
