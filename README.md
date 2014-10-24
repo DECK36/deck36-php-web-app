@@ -32,7 +32,12 @@ Yes. It can be installed.
  ```
   ./composer.phar self-update
  ```
-4. Start building your app by calling
+4. Execute composer.phar install
+ 
+ ```
+  ./composer.phar install
+ ```
+5. Start building your app by calling
  
  ```
   ./phing.phar build
