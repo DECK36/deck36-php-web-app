@@ -22,43 +22,43 @@ class Deck36Plan9Extension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.xml');
 
         if (!isset($config['overview']) || !isset($config['playground'])) {
             throw new \InvalidArgumentException(
-              'The "overview" and "playground" options must be set'
+                'The "overview" and "playground" options must be set'
             );
         }
 
         $container->setParameter(
-          'deck36_plan9.parameter.list_pixel_free',
-          $config['list_pixel_free']
+            'deck36_plan9.parameter.list_pixel_free',
+            $config['list_pixel_free']
         );
 
         $container->setParameter(
-          'deck36_plan9.parameter.overview.size.rows',
-          $config['overview']['size']['rows']
+            'deck36_plan9.parameter.overview.size.rows',
+            $config['overview']['size']['rows']
         );
 
         $container->setParameter(
-          'deck36_plan9.parameter.overview.size.cols',
-          $config['overview']['size']['cols']
+            'deck36_plan9.parameter.overview.size.cols',
+            $config['overview']['size']['cols']
         );
 
         $container->setParameter(
-          'deck36_plan9.parameter.overview.solutionimage',
-          $config['overview']['solutionimage']
+            'deck36_plan9.parameter.overview.solutionimage',
+            $config['overview']['solutionimage']
         );
 
         $container->setParameter(
-          'deck36_plan9.parameter.playground.desktopsize',
-          $config['playground']['desktopsize']
+            'deck36_plan9.parameter.playground.desktopsize',
+            $config['playground']['desktopsize']
         );
 
         $container->setParameter(
-          'deck36_plan9.parameter.playground.mobilesize',
-          $config['playground']['mobilesize']
+            'deck36_plan9.parameter.playground.mobilesize',
+            $config['playground']['mobilesize']
         );
     }
 }

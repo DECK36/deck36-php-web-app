@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Deck36\Bundle\StormBundle\Command;
 
@@ -15,14 +15,13 @@ class DeludedKittenRobbersCommand extends ContainerAwareCommand
     {
         $this
             ->setName('storm:bolt:DeludedKittenRobbers')
-            ->setDescription('Start Plan9 DeludedKittenRobbers Storm Bolt')
-        ;
+            ->setDescription('Start Plan9 DeludedKittenRobbers Storm Bolt');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $bolt = $this->getContainer()->get("deck36_storm.command.deluded_kitten_robbers_bolt");
-        $bolt->run();     
+        $bolt->run();
     }
 }
 

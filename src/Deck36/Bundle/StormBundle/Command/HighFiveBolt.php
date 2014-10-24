@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Deck36\Bundle\StormBundle\Command;
 
@@ -10,27 +10,28 @@ require_once('storm.php');
 class HighFiveBolt extends BasicBolt
 {
 
-	private $container;
+    private $container;
     private $userManager;
     private $highFiveTimeWindow;
-    
+
     private $highFiveBadgeName;
     private $highFiveBadgeText;
     private $highFiveBadgeSize;
     private $highFiveBadgeColor;
     private $highFiveBadgeEffect;
-    
-	public function __construct(Container $container, 
-                                $highFiveTimeWindow,
-                                $highFiveBadgeName,
-                                $highFiveBadgeText,
-                                $highFiveBadgeSize,
-                                $highFiveBadgeColor,
-                                $highFiveBadgeEffect
-                                ) {
+
+    public function __construct(
+        Container $container,
+        $highFiveTimeWindow,
+        $highFiveBadgeName,
+        $highFiveBadgeText,
+        $highFiveBadgeSize,
+        $highFiveBadgeColor,
+        $highFiveBadgeEffect
+    ) {
         parent::__construct();
-		$this->container = $container;
-        $this->userManager = $container->get('fos_user.user_manager'); 
+        $this->container = $container;
+        $this->userManager = $container->get('fos_user.user_manager');
         $this->highFiveTimeWindow = $highFiveTimeWindow;
 
         $this->highFiveBadgeName = $highFiveBadgeName;
@@ -38,15 +39,17 @@ class HighFiveBolt extends BasicBolt
         $this->highFiveBadgeSize = $highFiveBadgeSize;
         $this->highFiveBadgeColor = $highFiveBadgeColor;
         $this->highFiveBadgeEffect = $highFiveBadgeEffect;
-        
-	}
+
+    }
 
 
-    private function extract_user_from_key($keystring) {
-        $tokens = explode("_", $keystring);                
+    private function extract_user_from_key($keystring)
+    {
+        $tokens = explode("_", $keystring);
+
         return $tokens[4];
-    } 
- 
+    }
+
 
     public function process(Tuple $tuple)
     {
@@ -54,21 +57,23 @@ class HighFiveBolt extends BasicBolt
         $object = $tuple->values[0];
 
         $type = $object['type'];
-        
-        if ($type != 'cbt') 
+
+        if ($type != 'cbt') {
             return;
-        
+        }
+
         $result = $object['cbt']['solved'];
-        
-        if ($result != 'true') 
+
+        if ($result != 'true') {
             return;
+        }
 
         $userObj = $object['user'];
         $user = $userObj['user_id'];
-        
+
         $katze = serialize($object['cbt']['entity_coordinate']);
-        
-        $this->sendLog("\n\n\n[PHP] HIGHFIVE DATA : " . $type . " " . $result . " " . $katze . " " . $user);                
+
+        $this->sendLog("\n\n\n[PHP] HIGHFIVE DATA : " . $type . " " . $result . " " . $katze . " " . $user);
 
         // Get redis client from Symfony2 service container
         $redis = $this->container->get("snc_redis.default");
@@ -103,16 +108,16 @@ class HighFiveBolt extends BasicBolt
 
             $highFiveBadge = array();
             $highFiveBadge['katze'] = $katze;
-            
+
             $highFiveBadge['badge'] = array();
             $highFiveBadge['badge']['name'] = $this->highFiveBadgeName;
             $highFiveBadge['badge']['text'] = $this->highFiveBadgeText;
             $highFiveBadge['badge']['size'] = $this->highFiveBadgeSize;
             $highFiveBadge['badge']['color'] = $this->highFiveBadgeColor;
             $highFiveBadge['badge']['effect'] = $this->highFiveBadgeEffect;
-            
+
             $highFiveBadge['points'] = array();
-            $highFiveBadge['points']['increment'] = 20;            
+            $highFiveBadge['points']['increment'] = 20;
 
             $highFiveBadge['action'] = array();
             $highFiveBadge['action']['type'] = 'none';
@@ -121,15 +126,15 @@ class HighFiveBolt extends BasicBolt
             $highFiveBadge['type'] = 'badge';
             $highFiveBadge['version'] = 1;
             $highFiveBadge['timestamp'] = $createdAt;
-            
+
             foreach ($userGroup as $user) {
 
                 // specify the user 
                 $highFiveBadge['user'] = array();
                 $highFiveBadge['user']['user_id'] = $user;
-                               
+
                 // emit the badge
-                $this->emit([$highFiveBadge], null, [$tuple]); // $tuple, $stream, $anchors    
+                $this->emit([$highFiveBadge], null, [$tuple]); // $tuple, $stream, $anchors
 
                 // persist badge to database
                 $userRef = $this->userManager->findUserBy(array('id' => $user));
@@ -141,7 +146,7 @@ class HighFiveBolt extends BasicBolt
 
                 $userRef->addBadge($badge);
                 $this->userManager->updateUser($userRef);
-            
+
             } // foreach
 
             $this->ack($tuple);
@@ -149,6 +154,6 @@ class HighFiveBolt extends BasicBolt
         } // if 
 
     } // process
-   
+
 } // HighFiveBolt
 

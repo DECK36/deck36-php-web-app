@@ -48,13 +48,13 @@ class User extends AbstractUser
     /**
      * Construct
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->badges = new ArrayCollection();
 
         parent::__construct();
     }
 
-   
 
     /**
      * Add badge
@@ -117,7 +117,6 @@ class User extends AbstractUser
 
         return $this;
     }
-
 
 
     /**

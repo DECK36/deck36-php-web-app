@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Deck36\Bundle\StormBundle\Command;
 
@@ -15,14 +15,13 @@ class KittenRobbersFromOuterSpaceBoltCommand extends ContainerAwareCommand
     {
         $this
             ->setName('storm:bolt:KittenRobbers')
-            ->setDescription('Start Storm Bolt for the Plan9 Kitten Robbers from Outer Space Business Logic')                        
-        ;
+            ->setDescription('Start Storm Bolt for the Plan9 Kitten Robbers from Outer Space Business Logic');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $bolt = $this->getContainer()->get("deck36_storm.command.kitten_robbers_bolt");
-        $bolt->run();     
+        $bolt->run();
     }
 }
 

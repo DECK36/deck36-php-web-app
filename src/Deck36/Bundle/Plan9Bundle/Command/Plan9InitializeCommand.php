@@ -23,8 +23,7 @@ class Plan9InitializeCommand extends ContainerAwareCommand
     {
         $this
             ->setName('plan9:initialize')
-            ->setDescription('Initialize the Plan9 Playground. *WARNING: Deletes all state of the current game!*');
-        ;
+            ->setDescription('Initialize the Plan9 Playground. *WARNING: Deletes all state of the current game!*');;
 
         parent::configure();
     }
@@ -46,7 +45,10 @@ class Plan9InitializeCommand extends ContainerAwareCommand
         }
 
         // create list of empty pixels based on the configurations.
-        $this->createEmptyList($this->getContainer()->getParameter('deck36_plan9.parameter.list_pixel_free'), $emptyPixels);
+        $this->createEmptyList(
+            $this->getContainer()->getParameter('deck36_plan9.parameter.list_pixel_free'),
+            $emptyPixels
+        );
     }
 
     /**
@@ -56,12 +58,13 @@ class Plan9InitializeCommand extends ContainerAwareCommand
      *
      * @return bool
      */
-    private function createEmptyList($listName, $initialValues = array()) {
-        $listName = (string) $listName;
+    private function createEmptyList($listName, $initialValues = array())
+    {
+        $listName = (string)$listName;
         $this->deleteKey($listName);
 
         $stringifiedValues = array();
-        $storeList = function(&$stringifiedValues) {
+        $storeList = function (&$stringifiedValues) {
             return function ($value) use (&$stringifiedValues) {
                 $stringifiedValues[] = json_encode($value);
             };
@@ -76,14 +79,14 @@ class Plan9InitializeCommand extends ContainerAwareCommand
     }
 
     /**
-     * @param string  $listName
+     * @param string $listName
      * @param bool $nameIsPrefix
      *
      * @return void
      */
     private function deleteKey($keyName, $nameIsPrefix = false)
     {
-        $keyName = (string) $keyName;
+        $keyName = (string)$keyName;
 
         if (true == $nameIsPrefix) {
             // drop all game keys

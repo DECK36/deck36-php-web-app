@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Deck36\Bundle\StormBundle\Command;
 
@@ -15,14 +15,13 @@ class EmptyTickTupleBoltCommand extends ContainerAwareCommand
     {
         $this
             ->setName('storm:bolt:EmptyTickTuple')
-            ->setDescription('Start Empty Tick Tuple Storm Bolt')
-        ;
+            ->setDescription('Start Empty Tick Tuple Storm Bolt');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $bolt = $this->getContainer()->get("deck36_storm.command.empty_tick_tuple_bolt");
-        $bolt->run();     
+        $bolt->run();
     }
 }
 

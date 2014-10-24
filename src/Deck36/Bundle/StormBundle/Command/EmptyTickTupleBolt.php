@@ -1,7 +1,7 @@
-<?php 
+<?php
 
 namespace Deck36\Bundle\StormBundle\Command;
- 
+
 use Deck36\Bundle\Plan9Bundle\Entity\Badge;
 use Symfony\Component\DependencyInjection\Container;
 
@@ -10,7 +10,7 @@ require_once('storm.php');
 class EmptyTickTupleBolt extends BasicBolt
 {
 
-	private $container;
+    private $container;
     private $userManager;
 
     private $emptyTickTupleBadgeName;
@@ -18,32 +18,35 @@ class EmptyTickTupleBolt extends BasicBolt
     private $emptyTickTupleBadgeSize;
     private $emptyTickTupleBadgeColor;
     private $emptyTickTupleBadgeEffect;
-    
-	public function __construct(Container $container,
-                                $emptyTickTupleBadgeName,
-                                $emptyTickTupleBadgeText,
-                                $emptyTickTupleBadgeSize,
-                                $emptyTickTupleBadgeColor,
-                                $emptyTickTupleBadgeEffect
-                                ) {
+
+    public function __construct(
+        Container $container,
+        $emptyTickTupleBadgeName,
+        $emptyTickTupleBadgeText,
+        $emptyTickTupleBadgeSize,
+        $emptyTickTupleBadgeColor,
+        $emptyTickTupleBadgeEffect
+    ) {
         parent::__construct();
-		$this->container = $container;
-        $this->userManager = $container->get('fos_user.user_manager'); 
+        $this->container = $container;
+        $this->userManager = $container->get('fos_user.user_manager');
 
         $this->emptyTickTupleBadgeName = $emptyTickTupleBadgeName;
         $this->emptyTickTupleBadgeText = $emptyTickTupleBadgeText;
         $this->emptyTickTupleBadgeSize = $emptyTickTupleBadgeSize;
         $this->emptyTickTupleBadgeColor = $emptyTickTupleBadgeColor;
-        $this->emptyTickTupleBadgeEffect = $emptyTickTupleBadgeEffect;        
-	}
+        $this->emptyTickTupleBadgeEffect = $emptyTickTupleBadgeEffect;
+    }
 
 
-    private function isTickTuple(Tuple $tuple) {
+    private function isTickTuple(Tuple $tuple)
+    {
         return (($tuple->component === '__system') && ($tuple->stream === '__tick'));
     }
 
 
-    private function processTickTuple(Tuple $tuple) {
+    private function processTickTuple(Tuple $tuple)
+    {
         // process tick tuple
         // for demonstration purposes we send
         // an empty badge message  
@@ -72,24 +75,24 @@ class EmptyTickTupleBolt extends BasicBolt
 
 
         // construct badge message            
-        $emptyTickTupleBadge = array();        
+        $emptyTickTupleBadge = array();
         $emptyTickTupleBadge['user'] = array();
         $emptyTickTupleBadge['user']['user_id'] = $targetUser;
-        
+
         $emptyTickTupleBadge['timestamp'] = $date->getTimestamp();
 
         $emptyTickTupleBadge['type'] = 'badge';
         $emptyTickTupleBadge['version'] = 1;
-        
+
         $emptyTickTupleBadge['badge'] = array();
         $emptyTickTupleBadge['badge']['name'] = $this->emptyTickTupleBadgeName;
         $emptyTickTupleBadge['badge']['text'] = $this->emptyTickTupleBadgeText;
         $emptyTickTupleBadge['badge']['size'] = $this->emptyTickTupleBadgeSize;
         $emptyTickTupleBadge['badge']['color'] = $this->emptyTickTupleBadgeColor;
         $emptyTickTupleBadge['badge']['effect'] = $this->emptyTickTupleBadgeEffect;
-        
+
         $emptyTickTupleBadge['points'] = array();
-        $emptyTickTupleBadge['points']['increment'] = 0;            
+        $emptyTickTupleBadge['points']['increment'] = 0;
 
         $emptyTickTupleBadge['action'] = array();
         $emptyTickTupleBadge['action']['type'] = 'none';
@@ -98,11 +101,12 @@ class EmptyTickTupleBolt extends BasicBolt
         // emit the badge.
         // we emit unanchored, 
         // because we don't anchor to ephemeral tick tuples
-        $this->emit([$emptyTickTupleBadge]);   
+        $this->emit([$emptyTickTupleBadge]);
 
     }
 
-    private function processTuple(Tuple $tuple) {
+    private function processTuple(Tuple $tuple)
+    {
         // process regular tuples
     }
 
@@ -110,14 +114,14 @@ class EmptyTickTupleBolt extends BasicBolt
     public function process(Tuple $tuple)
     {
         // check for tick tuple
-        if ($this->isTickTuple($tuple)) {            
+        if ($this->isTickTuple($tuple)) {
             $this->processTickTuple($tuple);
         } else {
             $this->processTuple($tuple);
-        }      
+        }
 
         $this->ack($tuple);
     }
-   
+
 }
 

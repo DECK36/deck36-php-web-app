@@ -128,8 +128,10 @@ class Badge
     }
 
 
-    public function setUser($user) {
+    public function setUser($user)
+    {
         $this->user = $user;
+
         return $this;
     }
 

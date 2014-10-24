@@ -1,7 +1,7 @@
-<?php 
+<?php
 
 namespace Deck36\Bundle\StormBundle\Command;
- 
+
 use Deck36\Bundle\Plan9Bundle\Entity\Badge;
 use Symfony\Component\DependencyInjection\Container;
 
@@ -10,7 +10,7 @@ require_once('storm.php');
 class KittenRobbersFromOuterSpaceBolt extends BasicBolt
 {
 
-	private $container;
+    private $container;
     private $userManager;
 
     private $kittenRobbersBadgeName;
@@ -18,27 +18,29 @@ class KittenRobbersFromOuterSpaceBolt extends BasicBolt
     private $kittenRobbersBadgeSize;
     private $kittenRobbersBadgeColor;
     private $kittenRobbersBadgeEffect;
-    
-	public function __construct(Container $container,
-                                $kittenRobbersBadgeName,
-                                $kittenRobbersBadgeText,
-                                $kittenRobbersBadgeSize,
-                                $kittenRobbersBadgeColor,
-                                $kittenRobbersBadgeEffect
-                                ) {
+
+    public function __construct(
+        Container $container,
+        $kittenRobbersBadgeName,
+        $kittenRobbersBadgeText,
+        $kittenRobbersBadgeSize,
+        $kittenRobbersBadgeColor,
+        $kittenRobbersBadgeEffect
+    ) {
         parent::__construct();
-		$this->container = $container;
-        $this->userManager = $container->get('fos_user.user_manager'); 
+        $this->container = $container;
+        $this->userManager = $container->get('fos_user.user_manager');
 
         $this->kittenRobbersBadgeName = $kittenRobbersBadgeName;
         $this->kittenRobbersBadgeText = $kittenRobbersBadgeText;
         $this->kittenRobbersBadgeSize = $kittenRobbersBadgeSize;
         $this->kittenRobbersBadgeColor = $kittenRobbersBadgeColor;
-        $this->kittenRobbersBadgeEffect = $kittenRobbersBadgeEffect;        
-	}
+        $this->kittenRobbersBadgeEffect = $kittenRobbersBadgeEffect;
+    }
 
 
-    private function isTickTuple(Tuple $tuple) {
+    private function isTickTuple(Tuple $tuple)
+    {
         return (($tuple->component === '__system') && ($tuple->stream === '__tick'));
     }
 
@@ -65,16 +67,16 @@ class KittenRobbersFromOuterSpaceBolt extends BasicBolt
             $activeUsers = $redis->keys('user_*');
 
             $randIdx = 0;
-            $randIdx = rand(0, count($activeUsers)-1);
-            
+            $randIdx = rand(0, count($activeUsers) - 1);
+
             $robbedUserStr = $activeUsers[$randIdx];
 
             $tokens = explode("_", $robbedUserStr);
             $robbedUser = intval($tokens[1]);
 
             $date = new \DateTime();
-            
-   
+
+
             // persist badge to database
             $userRef = $this->userManager->findUserBy(array('id' => $robbedUser));
 
@@ -87,38 +89,38 @@ class KittenRobbersFromOuterSpaceBolt extends BasicBolt
             $this->userManager->updateUser($userRef);
 
             // construct badge message            
-            $kittenRobbersFromOuterSpace = array();        
+            $kittenRobbersFromOuterSpace = array();
             $kittenRobbersFromOuterSpace['user'] = array();
             $kittenRobbersFromOuterSpace['user']['user_id'] = $robbedUser;
-            
+
             $kittenRobbersFromOuterSpace['timestamp'] = $date->getTimestamp();
 
             $kittenRobbersFromOuterSpace['type'] = 'badge';
             $kittenRobbersFromOuterSpace['version'] = 1;
-            
+
             $kittenRobbersFromOuterSpace['badge'] = array();
             $kittenRobbersFromOuterSpace['badge']['name'] = $this->kittenRobbersBadgeName;
             $kittenRobbersFromOuterSpace['badge']['text'] = $this->kittenRobbersBadgeText;
             $kittenRobbersFromOuterSpace['badge']['size'] = $this->kittenRobbersBadgeSize;
             $kittenRobbersFromOuterSpace['badge']['color'] = $this->kittenRobbersBadgeColor;
             $kittenRobbersFromOuterSpace['badge']['effect'] = $this->kittenRobbersBadgeEffect;
-            
+
             $kittenRobbersFromOuterSpace['points'] = array();
-            $kittenRobbersFromOuterSpace['points']['increment'] = -100;            
+            $kittenRobbersFromOuterSpace['points']['increment'] = -100;
 
             $kittenRobbersFromOuterSpace['action'] = array();
             $kittenRobbersFromOuterSpace['action']['type'] = 'unsolve';
             $kittenRobbersFromOuterSpace['action']['amount'] = 1;
 
             // emit the badge
-            $this->emit([$kittenRobbersFromOuterSpace]);    
+            $this->emit([$kittenRobbersFromOuterSpace]);
 
         } else {
             // the KittenRobbers are  not approaching, if wqe don't get a tick tuple...
 
         }
-        
+
     }
-   
+
 }
 

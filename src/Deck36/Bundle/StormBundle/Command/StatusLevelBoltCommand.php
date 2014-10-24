@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Deck36\Bundle\StormBundle\Command;
 
@@ -15,14 +15,13 @@ class StatusLevelBoltCommand extends ContainerAwareCommand
     {
         $this
             ->setName('storm:bolt:StatusLevel')
-            ->setDescription('Start Storm bolt for the Plan9 Status Level Business Logic')                        
-        ;
+            ->setDescription('Start Storm bolt for the Plan9 Status Level Business Logic');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $bolt = $this->getContainer()->get("deck36_storm.command.status_level_bolt");
-        $bolt->run();     
+        $bolt->run();
     }
 }
 

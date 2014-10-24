@@ -1,7 +1,7 @@
-<?php 
+<?php
 
 namespace Deck36\Bundle\StormBundle\Command;
- 
+
 use Deck36\Bundle\Plan9Bundle\Entity\Badge;
 use Symfony\Component\DependencyInjection\Container;
 
@@ -16,7 +16,7 @@ class RecordBreakerBolt extends BasicBolt
     // 4. If updated record is in top 3 of ZSET, emit the badge
 
 
-	private $container;
+    private $container;
     private $userManager;
     private $currentPointsCounter;
 
@@ -25,17 +25,18 @@ class RecordBreakerBolt extends BasicBolt
     private $recordBreakerBadgeSize;
     private $recordBreakerBadgeColor;
     private $recordBreakerBadgeEffect;
-    
-	public function __construct(Container $container,
-                                $recordBreakerBadgeName,
-                                $recordBreakerBadgeText,
-                                $recordBreakerBadgeSize,
-                                $recordBreakerBadgeColor,
-                                $recordBreakerBadgeEffect
-                                ) {
+
+    public function __construct(
+        Container $container,
+        $recordBreakerBadgeName,
+        $recordBreakerBadgeText,
+        $recordBreakerBadgeSize,
+        $recordBreakerBadgeColor,
+        $recordBreakerBadgeEffect
+    ) {
         parent::__construct();
-		$this->container = $container;    
-        $this->userManager = $container->get('fos_user.user_manager'); 
+        $this->container = $container;
+        $this->userManager = $container->get('fos_user.user_manager');
 
         $this->currentPointsCounter = array();
 
@@ -44,7 +45,7 @@ class RecordBreakerBolt extends BasicBolt
         $this->recordBreakerBadgeSize = $recordBreakerBadgeSize;
         $this->recordBreakerBadgeColor = $recordBreakerBadgeColor;
         $this->recordBreakerBadgeEffect = $recordBreakerBadgeEffect;
-	}
+    }
 
 
     public function process(Tuple $tuple)
@@ -53,45 +54,48 @@ class RecordBreakerBolt extends BasicBolt
         $object = $tuple->values[0];
         $type = $object['type'];
 
-        if ($type == 'points') 
+        if ($type == 'points') {
             $this->updatePointCounters($tuple);
+        }
 
         if ($type == 'cbt') {
-            $result = $object['cbt']['solved']; 
+            $result = $object['cbt']['solved'];
 
-            if ($result != 'true')
+            if ($result != 'true') {
                 $this->newRecordBreaker($tuple);
+            }
         }
 
     } // process
 
 
-
-    private function updatePointCounters(Tuple $tuple) {
+    private function updatePointCounters(Tuple $tuple)
+    {
 
         $object = $tuple->values[0];
-        
-        $user = $object['user']['user_id'];        
+
+        $user = $object['user']['user_id'];
         $pointsIncrement = $object['points']['increment'];
 
         if (array_key_exists($user, $this->currentPointsCounter)) {
             $this->currentPointsCounter[$user] = $this->currentPointsCounter[$user] + $pointsIncrement;
         } else {
             $this->currentPointsCounter[$user] = $pointsIncrement;
-        }        
+        }
 
     }
 
 
-
-    private function newRecordBreaker(Tuple $tuple) {
+    private function newRecordBreaker(Tuple $tuple)
+    {
 
         $object = $tuple->values[0];
-        
+
         $user = $object['user']['user_id'];
-        
-        if (!array_key_exists($user, $this->currentPointsCounter))
+
+        if (!array_key_exists($user, $this->currentPointsCounter)) {
             return;
+        }
 
         $currentPoints = $this->currentPointsCounter[$user];
 
@@ -107,6 +111,7 @@ class RecordBreakerBolt extends BasicBolt
         if ($currentPoints <= $previousRecord) {
             // if not, we reset the local counter and return
             $this->currentPointsCounter[$user] = 0;
+
             return;
         }
 
@@ -135,7 +140,7 @@ class RecordBreakerBolt extends BasicBolt
 
         // build a 'badge' 'object' 
         $date = new \DateTime();
-                   
+
         // persist badge to database
         $userRef = $this->userManager->findUserBy(array('id' => $user));
 
@@ -155,19 +160,19 @@ class RecordBreakerBolt extends BasicBolt
         $recordBreakerBadge['top'] = $enhancementString;
         $recordBreakerBadge['timestamp'] = $date->getTimestamp();
         $recordBreakerBadge['pbr'] = $pointsBetweenRecords;
-            
+
         $recordBreakerBadge['type'] = 'badge';
         $recordBreakerBadge['version'] = 1;
-        
+
         $recordBreakerBadge['badge'] = array();
         $recordBreakerBadge['badge']['name'] = $this->recordBreakerBadgeName;
         $recordBreakerBadge['badge']['text'] = $this->recordBreakerBadgeText;
         $recordBreakerBadge['badge']['size'] = $this->recordBreakerBadgeSize;
         $recordBreakerBadge['badge']['color'] = $this->recordBreakerBadgeColor;
         $recordBreakerBadge['badge']['effect'] = $this->recordBreakerBadgeEffect;
-        
+
         $recordBreakerBadge['points'] = array();
-        $recordBreakerBadge['points']['increment'] = $bonusPoints;            
+        $recordBreakerBadge['points']['increment'] = $bonusPoints;
 
         $recordBreakerBadge['action'] = array();
         $recordBreakerBadge['action']['type'] = 'none';
@@ -175,10 +180,10 @@ class RecordBreakerBolt extends BasicBolt
 
 
         // emit the badge
-        $this->emit([$recordBreakerBadge]);    
+        $this->emit([$recordBreakerBadge]);
 
     }
 
-   
+
 }
 

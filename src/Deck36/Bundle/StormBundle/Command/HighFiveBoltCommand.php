@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Deck36\Bundle\StormBundle\Command;
 
@@ -15,14 +15,13 @@ class HighFiveBoltCommand extends ContainerAwareCommand
     {
         $this
             ->setName('storm:bolt:HighFive')
-            ->setDescription('Start Storm Bolt for the Plan9 HighFive Badge Business Logic')                        
-        ;
+            ->setDescription('Start Storm Bolt for the Plan9 HighFive Badge Business Logic');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $bolt = $this->getContainer()->get("deck36_storm.command.high_five_bolt");
-        $bolt->run();     
+        $bolt->run();
     }
 }
 

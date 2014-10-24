@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Deck36\Bundle\StormBundle\Command;
 
@@ -15,14 +15,13 @@ class PrimeCatBoltCommand extends ContainerAwareCommand
     {
         $this
             ->setName('storm:bolt:PrimeCat')
-            ->setDescription('Start Storm bolt for the Plan9 PrimeCat Badge Business Logic')                        
-        ;
+            ->setDescription('Start Storm bolt for the Plan9 PrimeCat Badge Business Logic');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $bolt = $this->getContainer()->get("deck36_storm.command.prime_cat_bolt");
-        $bolt->run();     
+        $bolt->run();
     }
 }
 

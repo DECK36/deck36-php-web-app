@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Deck36\Bundle\StormBundle\Command;
 
@@ -15,14 +15,13 @@ class RaiderOfTheKittenRobbersBoltCommand extends ContainerAwareCommand
     {
         $this
             ->setName('storm:bolt:RaiderOfTheKittenRobbers')
-            ->setDescription('Start Storm Bolt for the Plan9 Raider Of The Kitten Robbers Business Logic')                        
-        ;
+            ->setDescription('Start Storm Bolt for the Plan9 Raider Of The Kitten Robbers Business Logic');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $bolt = $this->getContainer()->get("deck36_storm.command.raider_of_robbers_bolt");
-        $bolt->run();     
+        $bolt->run();
     }
 }
 

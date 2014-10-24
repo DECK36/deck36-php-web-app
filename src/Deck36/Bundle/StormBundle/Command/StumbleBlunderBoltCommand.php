@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Deck36\Bundle\StormBundle\Command;
 
@@ -15,14 +15,13 @@ class StumbleBlunderBoltCommand extends ContainerAwareCommand
     {
         $this
             ->setName('storm:bolt:StumbleBlunder')
-            ->setDescription('Start Storm bolt for the Plan9 StumbleBlunder Badge Business Logic')                        
-        ;
+            ->setDescription('Start Storm bolt for the Plan9 StumbleBlunder Badge Business Logic');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $bolt = $this->getContainer()->get("deck36_storm.command.stumble_blunder_bolt");
-        $bolt->run();     
+        $bolt->run();
     }
 }
 

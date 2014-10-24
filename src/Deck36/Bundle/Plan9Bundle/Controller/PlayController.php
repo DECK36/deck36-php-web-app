@@ -44,12 +44,12 @@ class PlayController extends Controller
         }*/
 
 
-       $overview = array(
-          'solution_image' => $this->container->getParameter('deck36_plan9.parameter.overview.solutionimage'),
-          'rows' => $this->container->getParameter('deck36_plan9.parameter.overview.size.rows'),
-          'cols' => $this->container->getParameter('deck36_plan9.parameter.overview.size.cols'),
-          'solved_pix' => $this->getSolvedPix(),
-          'highscores' => $this->getHighScores(),
+        $overview = array(
+            'solution_image' => $this->container->getParameter('deck36_plan9.parameter.overview.solutionimage'),
+            'rows' => $this->container->getParameter('deck36_plan9.parameter.overview.size.rows'),
+            'cols' => $this->container->getParameter('deck36_plan9.parameter.overview.size.cols'),
+            'solved_pix' => $this->getSolvedPix(),
+            'highscores' => $this->getHighScores(),
         );
 
         // die(var_dump($overview));
@@ -64,7 +64,7 @@ class PlayController extends Controller
      */
     public function playgroundAction(Request $request)
     {
-        if($request->attributes->get('isMobile', false)) {
+        if ($request->attributes->get('isMobile', false)) {
             $rows = $this->container->getParameter('deck36_plan9.parameter.playground.mobilesize');
         } else {
             $rows = $this->container->getParameter('deck36_plan9.parameter.playground.desktopsize');
@@ -72,9 +72,9 @@ class PlayController extends Controller
 
         $badgesToShow = array();
         $this->get('security.context')->getToken()->getUser()->getBadges()->forAll(
-          function($key, $element) use ($badgesToShow) {
-              $badgesToShow[] = $element;
-          }
+            function ($key, $element) use ($badgesToShow) {
+                $badgesToShow[] = $element;
+            }
         );
 
         $cols = $rows;
@@ -85,6 +85,7 @@ class PlayController extends Controller
             'badges' => $badgesToShow,
             'highscores' => $this->getHighScores()
         );
+
         return array('playground' => $playground);
     }
 
@@ -94,7 +95,8 @@ class PlayController extends Controller
     private function getHighScores()
     {
         $redisClient = $this->get('snc_redis.default');
-        return $redisClient->zrevrange('plan9_highscores','0','9', 'withscores');
+
+        return $redisClient->zrevrange('plan9_highscores', '0', '9', 'withscores');
     }
 
     /**
@@ -103,6 +105,7 @@ class PlayController extends Controller
     private function getSolvedPix()
     {
         $redisClient = $this->get('snc_redis.default');
+
         return $redisClient->smembers('plan9_pixel_solved');
 
         /*$encodedSolvedPix = array();
