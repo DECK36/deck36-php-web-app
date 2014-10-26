@@ -19,6 +19,7 @@
         <parameter key="deck36_storm.command.record_breaker_bolt.class">Deck36\Bundle\StormBundle\Command\RecordBreakerBolt</parameter>
         <parameter key="deck36_storm.command.record_master_bolt.class">Deck36\Bundle\StormBundle\Command\RecordMasterBolt</parameter>
         <parameter key="deck36_storm.command.status_level_bolt.class">Deck36\Bundle\StormBundle\Command\StatusLevelBolt</parameter>
+        <parameter key="deck36_storm.command.wheel_of_kitten_bolt.class">Deck36\Bundle\StormBundle\Command\WheelOfKittenBolt</parameter>
         <parameter key="deck36_storm.command.stumble_blunder_bolt.class">Deck36\Bundle\StormBundle\Command\StumbleBlunderBolt</parameter>
 
     </parameters>
@@ -155,6 +156,17 @@
             <argument>%status_level__badge_size%</argument>  
             <argument>%status_level__badge_color%</argument> 
             <argument>%status_level__badge_effect%</argument>
+
+        </service>
+
+        <service id="deck36_storm.command.wheel_of_kitten_bolt"
+                 class="%deck36_storm.command.wheel_of_kitten_bolt.class%">
+            <argument type="service" id="service_container" />
+            <argument>%wheel_of_kitten__badge_name%</argument>
+            <argument>%wheel_of_kitten__badge_text%</argument>
+            <argument>%wheel_of_kitten__badge_size%</argument>
+            <argument>%wheel_of_kitten__badge_color%</argument>
+            <argument>%wheel_of_kitten__badge_effect%</argument>
 
         </service>
 

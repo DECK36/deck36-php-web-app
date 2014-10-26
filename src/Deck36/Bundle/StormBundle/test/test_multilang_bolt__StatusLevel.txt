@@ -1,8 +1,8 @@
 {
     "conf": {
         "deck36_storm": {
-            "StatusLevelBolt": {
-                "main": "StatusLevelBolt",
+            "WheelOfKittenBolt": {
+                "main": "WheelOfKittenBolt",
                 "params": null,
                 "rabbitmq": {
                     "exchange": "plan9",
@@ -11,7 +11,7 @@
                 },
                 "badge_timewindow": 50,
                 "badge": {
-                    "name": "StatusLevel",
+                    "name": "WheelOfKitten",
                     "text": "You achieved a new level! Welcome! You are Hundred Kitties !",
                     "color": "red",
                     "size": "3em",

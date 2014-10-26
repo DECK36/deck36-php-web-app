@@ -165,6 +165,13 @@ class Deck36StormExtension extends Extension
         $container->setParameter('status_level__badge_color', $config['StatusLevelBolt']['badge']['color']);
         $container->setParameter('status_level__badge_effect', $config['StatusLevelBolt']['badge']['effect']);
 
+        // WheelOfKittenBolt
+        $container->setParameter('wheel_of_kitten__badge_name', $config['WheelOfKittenBolt']['badge']['name']);
+        $container->setParameter('wheel_of_kitten__badge_text', $config['WheelOfKittenBolt']['badge']['text']);
+        $container->setParameter('wheel_of_kitten__badge_size', $config['WheelOfKittenBolt']['badge']['size']);
+        $container->setParameter('wheel_of_kitten__badge_color', $config['WheelOfKittenBolt']['badge']['color']);
+        $container->setParameter('wheel_of_kitten__badge_effect', $config['WheelOfKittenBolt']['badge']['effect']);
+
 
     }
 }

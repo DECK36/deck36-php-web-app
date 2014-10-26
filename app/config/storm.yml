@@ -99,16 +99,16 @@ deck36_storm:
         levels:
             "Hatched Kitty":        0
             "Player Kitty":         1
-            "Tweety Kitty":         4
-            "Lonely Kitty":         6
-            "Greedy Kitty":         7            
-            "Cat Kong":             10
-            "Needy Kitty":          12
-            "Meaty Kitty":          15
-            "Die Grinsekatze":      20
-            "Halo Kitty":           22
-            "Cat Mandu":            25            
-            "Hundred Kitties":      100
+            "Tweety Kitty":         2
+            "Lonely Kitty":         3
+            "Greedy Kitty":         4
+            "Cat Kong":             5
+            "Needy Kitty":          6
+            "Meaty Kitty":          7
+            "Die Grinsekatze":      8
+            "Halo Kitty":           9
+            "Cat Mandu":            10
+            "Hundred Kitties":      11
             "Pinky Kitty": 150
             "Chester Cat": 202
             "Hodge Podge": 242
@@ -152,6 +152,19 @@ deck36_storm:
             size:    "2em"
             effect:  "explode"
 
+    WheelOfKittenBolt:
+            main:       "storm:bolt:WheelOfKitten"
+            params:
+            rabbitmq:
+                exchange:        "plan9"
+                routing_key:     "points.#"
+                target_exchange: "plan9-backchannel"
+            badge:
+                name:   "WheelOfKitten"
+                text:   "YES ran the wheel."
+                color:   "red"
+                size:    "2em"
+                effect:  "explode"
 
 
     PrimeCatBolt:
